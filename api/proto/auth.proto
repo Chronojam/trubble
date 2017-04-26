@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package api;
+
+service Auth {
+    rpc IssueNewJWT (NewJwtRequest) returns (NewJwtResponse) {}
+    rpc UpdatePassword (UpdatePasswordRequest) returns (UpdatePasswordResponse) {}
+}
+
+message NewJwtRequest {
+    string email = 1;
+    string password = 2;
+}
+
+message NewJwtResponse {
+    string token = 1;
+}
+
+message UpdatePasswordRequest {
+    string old =1;
+    string new =2;
+}
+
+message UpdatePasswordResponse {}

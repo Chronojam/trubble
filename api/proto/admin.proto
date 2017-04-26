@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package api;
+
+service Admin {
+    rpc CreateAccount (CreateAccountRequest) returns (CreateAccountResponse) {}
+    rpc DeleteAccount (DeleteAccountRequest) returns (DeleteAccountResponse) {}
+}
+
+message CreateAccountRequest {
+    string email = 1;
+}
+message CreateAccountResponse {
+    string temppassword = 1;
+}
+
+message DeleteAccountRequest {
+    int64 accountid = 1;
+}
+message DeleteAccountResponse {}

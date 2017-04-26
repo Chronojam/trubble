@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package api;
+
+service Game {
+    rpc CreateGame (CreateGameRequest) returns (CreateGameResponse) {}
+    rpc UploadBinary (stream UploadBinaryRequest) returns (UploadBinaryResponse) {}
+}
+
+message CreateGameRequest {
+    string name = 1;
+    string version = 2;
+}
+message CreateGameResponse {}
+
+// Upload it as a massive blob for now, but we could potentially do streaming in the future
+message UploadBinaryRequest {
+    message Key {
+        string game = 1;
+        string version = 2;
+        int64 size = 3;
+    }
+    message Chunk {
+        bytes data = 1;
+        int64 position = 2;
+    }
+    oneof value {
+        Key key = 3;
+        Chunk chunk = 4;
+    }
+}
+
+message UploadBinaryResponse {}

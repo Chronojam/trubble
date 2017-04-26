@@ -1,0 +1,10 @@
+.idea
+
+api/api
+api/api.exe
+
+worker/worker.exe
+worker/worker
+
+cmd/test/test
+cmd/test/test.exe

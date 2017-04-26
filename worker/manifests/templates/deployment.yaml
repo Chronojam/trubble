@@ -1,0 +1,28 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: worker
+spec:
+  replicas: worker
+  template:
+    metadata:
+      labels:
+        app: worker
+    spec:
+      containers:
+      - name: worker
+        image: "gcr.io/chronojam-trubble/worker:latest"
+        imagePullPolicy: Always
+        env:
+          - name: GOOGLE_APPLICATION_CREDENTIALS
+            value: /secret/keyfile.json
+        volumeMounts:
+        - name: keyfile
+          mountPath: "/secret"
+          readOnly: true
+
+      volumes:
+      - name: keyfile
+        secret: {
+          secretName: "worker-keyfile"
+        }
