@@ -1,0 +1,1 @@
+![alt text](https://github.com/chronojam/trubble/blob/master/doc/architecture.png?raw=true "Architecture Diagram")
